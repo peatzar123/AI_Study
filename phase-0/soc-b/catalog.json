@@ -1,0 +1,14 @@
+{
+  "brute_force": [
+    {
+      "standard": "ISO/IEC 27001:2022",
+      "control_id": "8.5",
+      "name": "Secure authentication"
+    },
+    {
+      "standard": "ISO/IEC 27001:2022",
+      "control_id": "8.16",
+      "name": "Monitoring activities"
+    }
+  ]
+}
