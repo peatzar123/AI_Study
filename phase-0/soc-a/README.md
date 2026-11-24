@@ -17,7 +17,8 @@ python summarize_log.py sample_auth_log.csv > output.json
 
 python -m pytest -v
 
-ตัวอย่างรูปแบบ .json
+### 2. ตัวอย่างรูปแบบ .json
+```bash
 {
   "failed_logins": 8,
   "top_source_ips": [
@@ -34,7 +35,7 @@ python -m pytest -v
 }
 ---
 
-#### 4. คำสั่งส่งขึ้น GitHub (รันใน Git Bash ที่โฟลเดอร์ `AI_Study`)
+### 3. คำสั่งส่งขึ้น GitHub (รันใน Git Bash ที่โฟลเดอร์ `AI_Study`)
 ```bash
 git add .
 git commit -m "phase 0 soc-a: add log summarizer, tests, and README"
