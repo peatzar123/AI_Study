@@ -1,0 +1,64 @@
+{
+  "@version": "2.15.0",
+  "site": [
+    {
+      "@name": "http://lab.local",
+      "alerts": [
+        {
+          "pluginid": "10038",
+          "alert": "Content Security Policy (CSP) Header Not Set",
+          "riskcode": "2",
+          "confidence": "3",
+          "riskdesc": "Medium (High)",
+          "cweid": "693",
+          "instances": [
+            {
+              "uri": "http://lab.local/",
+              "method": "GET",
+              "evidence": ""
+            },
+            {
+              "uri": "http://lab.local/login",
+              "method": "GET",
+              "evidence": ""
+            }
+          ],
+          "count": "2"
+        },
+        {
+          "pluginid": "40012",
+          "alert": "Cross Site Scripting (Reflected)",
+          "riskcode": "3",
+          "confidence": "2",
+          "riskdesc": "High (Medium)",
+          "cweid": "79",
+          "instances": [
+            {
+              "uri": "http://lab.local/search?q=%3Cscript%3Ealert(1)%3C%2Fscript%3E",
+              "method": "GET",
+              "param": "q",
+              "evidence": "<script>alert(1)</script>"
+            }
+          ],
+          "count": "1"
+        },
+        {
+          "pluginid": "10021",
+          "alert": "X-Content-Type-Options Header Missing",
+          "riskcode": "1",
+          "confidence": "2",
+          "riskdesc": "Low (Medium)",
+          "cweid": "693",
+          "instances": [
+            {
+              "uri": "http://lab.local/",
+              "method": "GET",
+              "evidence": ""
+            }
+          ],
+          "count": "1"
+        }
+      ]
+    }
+  ]
+}

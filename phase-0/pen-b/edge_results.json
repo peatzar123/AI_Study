@@ -1,0 +1,46 @@
+{
+  "suite": "zapB",
+  "command": "python zap_parse.py {in} {in2}",
+  "results": {
+    "Z1": {
+      "exit_code": 0,
+      "stdout": "{\r\n  \"findings\": [\r\n    {\r\n      \"plugin_id\": \"40012\",\r\n      \"title\": \"Cross Site Scripting (Reflected)\",\r\n      \"severity\": \"High\",\r\n      \"cwe\": \"79\",\r\n      \"uri\": \"http://lab.local/s\",\r\n      \"evidence\": \"alert(1)\"\r\n    }\r\n  ]\r\n}\r\n",
+      "stderr": ""
+    },
+    "Z2": {
+      "exit_code": 0,
+      "stdout": "{\r\n  \"findings\": [\r\n    {\r\n      \"plugin_id\": \"40018\",\r\n      \"title\": \"SQL Injection\",\r\n      \"severity\": \"High\",\r\n      \"cwe\": \"89\",\r\n      \"uri\": \"http://lab.local/item?id=1\",\r\n      \"evidence\": \"syntax error\"\r\n    },\r\n    {\r\n      \"plugin_id\": \"10021\",\r\n      \"title\": \"X-Content-Type-Options Header Missing\",\r\n      \"severity\": \"Low\",\r\n      \"cwe\": \"693\",\r\n      \"uri\": \"http://lab.local/\",\r\n      \"evidence\": \"\"\r\n    }\r\n  ]\r\n}\r\n",
+      "stderr": ""
+    },
+    "Z3": {
+      "exit_code": 0,
+      "stdout": "{\r\n  \"findings\": [\r\n    {\r\n      \"plugin_id\": \"10096\",\r\n      \"title\": \"Timestamp Disclosure\",\r\n      \"severity\": \"Informational\",\r\n      \"cwe\": \"200\",\r\n      \"uri\": \"http://lab.local/app.js\",\r\n      \"evidence\": \"1727740800\"\r\n    }\r\n  ]\r\n}\r\n",
+      "stderr": ""
+    },
+    "Z4": {
+      "exit_code": 0,
+      "stdout": "{\r\n  \"findings\": [\r\n    {\r\n      \"plugin_id\": \"10021\",\r\n      \"title\": \"X-Content-Type-Options Header Missing\",\r\n      \"severity\": \"Low\",\r\n      \"cwe\": \"693\",\r\n      \"uri\": \"http://lab.local/\",\r\n      \"evidence\": \"\"\r\n    }\r\n  ]\r\n}\r\n",
+      "stderr": ""
+    },
+    "Z5": {
+      "exit_code": 0,
+      "stdout": "{\r\n  \"findings\": [\r\n    {\r\n      \"plugin_id\": \"10038\",\r\n      \"title\": \"CSP Header Not Set\",\r\n      \"severity\": \"Medium\",\r\n      \"cwe\": \"693\",\r\n      \"uri\": \"http://lab.local/\",\r\n      \"evidence\": \"\"\r\n    }\r\n  ]\r\n}\r\n",
+      "stderr": ""
+    },
+    "Z6": {
+      "exit_code": 0,
+      "stdout": "{\r\n  \"findings\": [\r\n    {\r\n      \"plugin_id\": \"10027\",\r\n      \"title\": \"Information Disclosure\",\r\n      \"severity\": \"Low\",\r\n      \"cwe\": \"200\",\r\n      \"uri\": \"http://lab.local/th\",\r\n      \"evidence\": \"รหัสผ่าน: ผู้ดูแลระบบ\"\r\n    }\r\n  ]\r\n}\r\n",
+      "stderr": ""
+    },
+    "Z7": {
+      "exit_code": 1,
+      "stdout": "{\"error\": \"Expecting value: line 1 column 11 (char 10)\"}\r\n",
+      "stderr": ""
+    },
+    "Z8": {
+      "exit_code": 1,
+      "stdout": "{\"error\": \"Invalid ZAP JSON: missing 'site' list\"}\r\n",
+      "stderr": ""
+    }
+  }
+}

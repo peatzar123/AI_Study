@@ -1,0 +1,127 @@
+{
+  "suite": "zapB",
+  "command_example": "python zap_normalize.py {in} {in2}",
+  "rule": "input ใช้ไม่ได้ ให้พิมพ์ {\"error\": \"...\"} ออก stdout และจบด้วย exit code ที่ไม่ใช่ 0",
+  "cases": [
+    {
+      "id": "Z1",
+      "title": "ข้อมูลปกติ",
+      "expect": "ok",
+      "files": [
+        [
+          "r1.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": [\n        {\n          \"pluginid\": \"40012\",\n          \"alert\": \"Cross Site Scripting (Reflected)\",\n          \"riskcode\": \"3\",\n          \"confidence\": \"2\",\n          \"cweid\": \"79\",\n          \"instances\": [\n            {\n              \"uri\": \"http://lab.local/s\",\n              \"method\": \"GET\",\n              \"evidence\": \"alert(1)\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+        ],
+        [
+          "r2.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": []\n    }\n  ]\n}"
+        ]
+      ]
+    },
+    {
+      "id": "Z2",
+      "title": "riskcode เป็นตัวเลขแทน string",
+      "expect": "ok",
+      "files": [
+        [
+          "r1.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": [\n        {\n          \"pluginid\": \"40018\",\n          \"alert\": \"SQL Injection\",\n          \"riskcode\": 3,\n          \"confidence\": \"2\",\n          \"cweid\": \"89\",\n          \"instances\": [\n            {\n              \"uri\": \"http://lab.local/item?id=1\",\n              \"method\": \"GET\",\n              \"evidence\": \"syntax error\"\n            }\n          ]\n        },\n        {\n          \"pluginid\": \"10021\",\n          \"alert\": \"X-Content-Type-Options Header Missing\",\n          \"riskcode\": 1,\n          \"confidence\": \"2\",\n          \"cweid\": \"693\",\n          \"instances\": [\n            {\n              \"uri\": \"http://lab.local/\",\n              \"method\": \"GET\",\n              \"evidence\": \"\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+        ],
+        [
+          "r2.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": []\n    }\n  ]\n}"
+        ]
+      ]
+    },
+    {
+      "id": "Z3",
+      "title": "alert ที่ instances ว่าง",
+      "expect": "ok",
+      "files": [
+        [
+          "r1.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": [\n        {\n          \"pluginid\": \"10038\",\n          \"alert\": \"CSP Header Not Set\",\n          \"riskcode\": \"2\",\n          \"confidence\": \"2\",\n          \"cweid\": \"693\",\n          \"instances\": []\n        },\n        {\n          \"pluginid\": \"10096\",\n          \"alert\": \"Timestamp Disclosure\",\n          \"riskcode\": \"0\",\n          \"confidence\": \"2\",\n          \"cweid\": \"200\",\n          \"instances\": [\n            {\n              \"uri\": \"http://lab.local/app.js\",\n              \"method\": \"GET\",\n              \"evidence\": \"1727740800\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+        ],
+        [
+          "r2.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": []\n    }\n  ]\n}"
+        ]
+      ]
+    },
+    {
+      "id": "Z4",
+      "title": "instance ไม่มี key evidence",
+      "expect": "ok",
+      "files": [
+        [
+          "r1.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": [\n        {\n          \"pluginid\": \"10021\",\n          \"alert\": \"X-Content-Type-Options Header Missing\",\n          \"riskcode\": \"1\",\n          \"confidence\": \"2\",\n          \"cweid\": \"693\",\n          \"instances\": [\n            {\n              \"uri\": \"http://lab.local/\",\n              \"method\": \"GET\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+        ],
+        [
+          "r2.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": []\n    }\n  ]\n}"
+        ]
+      ]
+    },
+    {
+      "id": "Z5",
+      "title": "รายการซ้ำข้ามสองรายงาน",
+      "expect": "ok",
+      "files": [
+        [
+          "r1.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": [\n        {\n          \"pluginid\": \"10038\",\n          \"alert\": \"CSP Header Not Set\",\n          \"riskcode\": \"2\",\n          \"confidence\": \"2\",\n          \"cweid\": \"693\",\n          \"instances\": [\n            {\n              \"uri\": \"http://lab.local/\",\n              \"method\": \"GET\",\n              \"evidence\": \"\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+        ],
+        [
+          "r2.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": [\n        {\n          \"pluginid\": \"10038\",\n          \"alert\": \"CSP Header Not Set\",\n          \"riskcode\": \"2\",\n          \"confidence\": \"2\",\n          \"cweid\": \"693\",\n          \"instances\": [\n            {\n              \"uri\": \"http://lab.local/\",\n              \"method\": \"GET\",\n              \"evidence\": \"\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+        ]
+      ]
+    },
+    {
+      "id": "Z6",
+      "title": "ข้อความภาษาไทย",
+      "expect": "ok",
+      "files": [
+        [
+          "r1.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": [\n        {\n          \"pluginid\": \"10027\",\n          \"alert\": \"Information Disclosure\",\n          \"riskcode\": \"1\",\n          \"confidence\": \"2\",\n          \"cweid\": \"200\",\n          \"instances\": [\n            {\n              \"uri\": \"http://lab.local/th\",\n              \"method\": \"GET\",\n              \"evidence\": \"รหัสผ่าน: ผู้ดูแลระบบ\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+        ],
+        [
+          "r2.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": []\n    }\n  ]\n}"
+        ]
+      ]
+    },
+    {
+      "id": "Z7",
+      "title": "JSON ไม่สมบูรณ์",
+      "expect": "error",
+      "files": [
+        [
+          "r1.json",
+          "{\"site\": ["
+        ],
+        [
+          "r2.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": []\n    }\n  ]\n}"
+        ]
+      ]
+    },
+    {
+      "id": "Z8",
+      "title": "JSON ไม่มี key site",
+      "expect": "error",
+      "files": [
+        [
+          "r1.json",
+          "{\"@version\": \"2.15.0\"}"
+        ],
+        [
+          "r2.json",
+          "{\n  \"@version\": \"2.15.0\",\n  \"site\": [\n    {\n      \"@name\": \"http://lab.local\",\n      \"alerts\": []\n    }\n  ]\n}"
+        ]
+      ]
+    }
+  ]
+}
